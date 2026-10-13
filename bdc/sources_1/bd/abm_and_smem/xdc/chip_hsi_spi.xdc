@@ -1,0 +1,56 @@
+
+# ---------------------------------------------------------------------------
+# Pin definitions
+# ---------------------------------------------------------------------------
+
+
+# 
+#  Sensor chip SPI bus
+# 
+set_property -dict {PACKAGE_PIN A23  IOSTANDARD LVCMOS15  SLEW SLOW}  [get_ports CHIP_SPI_CSN ] ;# FMCP1_LA21_N
+set_property -dict {PACKAGE_PIN G22  IOSTANDARD LVCMOS15           }  [get_ports CHIP_SPI_MISO] ;# FMCP1_LA29_N
+set_property -dict {PACKAGE_PIN D24  IOSTANDARD LVCMOS15  SLEW SLOW}  [get_ports CHIP_SPI_MOSI] ;# FMCP1_LA25_P
+set_property -dict {PACKAGE_PIN C24  IOSTANDARD LVCMOS15  SLEW SLOW}  [get_ports CHIP_SPI_SCK ] ;# FMCP1_LA25_N
+                                                                                                                                                           
+#
+#  High Speed bus for updating sensor chip SMEM
+#
+set_property -dict {PACKAGE_PIN R26  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[ 0]] ;# FMCP1_LA05_N  
+set_property -dict {PACKAGE_PIN P27  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[ 1]] ;# FMCP1_LA10_N
+set_property -dict {PACKAGE_PIN R28  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[ 2]] ;# FMCP1_LA09_P
+set_property -dict {PACKAGE_PIN A26  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[ 3]] ;# FMCP1_LA14_N
+set_property -dict {PACKAGE_PIN E26  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[ 4]] ;# FMCP1_LA12_N
+set_property -dict {PACKAGE_PIN E27  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[ 5]] ;# FMCP1_LA12_P
+set_property -dict {PACKAGE_PIN C26  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[ 6]] ;# FMCP1_LA13_N
+set_property -dict {PACKAGE_PIN P28  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[ 7]] ;# FMCP1_LA09_N
+set_property -dict {PACKAGE_PIN F25  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[ 8]] ;# FMCP1_LA08_P
+set_property -dict {PACKAGE_PIN U26  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[ 9]] ;# FMCP1_LA06_N
+set_property -dict {PACKAGE_PIN B27  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[10]] ;# FMCP1_LA14_P
+set_property -dict {PACKAGE_PIN R27  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[11]] ;# FMCP1_LA10_P
+set_property -dict {PACKAGE_PIN D27  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[12]] ;# FMCP1_LA13_P
+set_property -dict {PACKAGE_PIN B28  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[13]] ;# FMCP1_LA15_P
+set_property -dict {PACKAGE_PIN A28  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[14]] ;# FMCP1_LA15_N
+set_property -dict {PACKAGE_PIN D28  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[15]] ;# FMCP1_LA11_P
+set_property -dict {PACKAGE_PIN D25  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[16]] ;# FMCP1_LA01_CC_P
+set_property -dict {PACKAGE_PIN C27  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[17]] ;# FMCP1_LA11_N
+set_property -dict {PACKAGE_PIN E28  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[18]] ;# FMCP1_LA07_N
+set_property -dict {PACKAGE_PIN G28  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[19]] ;# FMCP1_LA04_N
+set_property -dict {PACKAGE_PIN F28  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[20]] ;# FMCP1_LA07_P
+set_property -dict {PACKAGE_PIN H27  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[21]] ;# FMCP1_LA04_P
+set_property -dict {PACKAGE_PIN E25  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[22]] ;# FMCP1_LA08_N
+set_property -dict {PACKAGE_PIN T26  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[23]] ;# FMCP1_LA05_P
+set_property -dict {PACKAGE_PIN G27  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[24]] ;# FMCP1_LA03_N
+set_property -dict {PACKAGE_PIN H26  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[25]] ;# FMCP1_LA03_P
+set_property -dict {PACKAGE_PIN M28  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[26]] ;# FMCP1_LA02_N
+set_property -dict {PACKAGE_PIN N27  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[27]] ;# FMCP1_LA02_P
+set_property -dict {PACKAGE_PIN F26  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[28]] ;# FMCP1_LA00_CC_N
+set_property -dict {PACKAGE_PIN G26  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[29]] ;# FMCP1_LA00_CC_P
+set_property -dict {PACKAGE_PIN V26  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[30]] ;# FMCP1_LA06_P
+set_property -dict {PACKAGE_PIN C25  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_DATA[31]] ;# FMCP1_LA01_CC_N
+
+set_property -dict {PACKAGE_PIN B22  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_CLK     ] ;# FMCP1_LA23_N
+set_property -dict {PACKAGE_PIN J23  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_CMD     ] ;# FMCP1_LA17_CC_N
+set_property -dict {PACKAGE_PIN K23  IOSTANDARD LVCMOS15  SLEW SLOW  IOB TRUE}  [get_ports CHIP_HSI_VALID   ] ;# FMCP1_LA17_CC_P
+
+
+
