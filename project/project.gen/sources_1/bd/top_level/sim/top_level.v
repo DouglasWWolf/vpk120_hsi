@@ -2,7 +2,7 @@
 //Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
-//Date        : Mon Oct 12 16:48:09 2026
+//Date        : Thu Oct 22 15:11:56 2026
 //Host        : wolf-super-server running 64-bit Ubuntu 20.04.6 LTS
 //Command     : generate_target top_level.bd
 //Design      : top_level
@@ -316,7 +316,22 @@ module pl_rtl_imp_QFYSB7
     pin_spi_cs_n,
     pin_spi_miso,
     pin_spi_mosi,
-    pin_spi_pclk);
+    pin_spi_pclk,
+    qsfp0_clk_clk_n,
+    qsfp0_clk_clk_p,
+    qsfp0_gt_grx_n,
+    qsfp0_gt_grx_p,
+    qsfp0_gt_gtx_n,
+    qsfp0_gt_gtx_p,
+    qsfp1_clk_clk_n,
+    qsfp1_clk_clk_p,
+    qsfp1_gt_grx_n,
+    qsfp1_gt_grx_p,
+    qsfp1_gt_gtx_n,
+    qsfp1_gt_gtx_p,
+    qsfp_lpmode,
+    rx0_aligned,
+    rx1_aligned);
   output [0:0]CHIP_GPIO13;
   output [0:0]CHIP_GPIO15;
   output [0:0]CHIP_GPIO15_DIR;
@@ -451,6 +466,21 @@ module pl_rtl_imp_QFYSB7
   input pin_spi_miso;
   output pin_spi_mosi;
   output pin_spi_pclk;
+  input [0:0]qsfp0_clk_clk_n;
+  input [0:0]qsfp0_clk_clk_p;
+  input [3:0]qsfp0_gt_grx_n;
+  input [3:0]qsfp0_gt_grx_p;
+  output [3:0]qsfp0_gt_gtx_n;
+  output [3:0]qsfp0_gt_gtx_p;
+  input [0:0]qsfp1_clk_clk_n;
+  input [0:0]qsfp1_clk_clk_p;
+  input [3:0]qsfp1_gt_grx_n;
+  input [3:0]qsfp1_gt_grx_p;
+  output [3:0]qsfp1_gt_gtx_n;
+  output [3:0]qsfp1_gt_gtx_p;
+  output qsfp_lpmode;
+  output rx0_aligned;
+  output rx1_aligned;
 
   wire [7:0]AXI_CLOCK_CTL_1_ARADDR;
   wire [2:0]AXI_CLOCK_CTL_1_ARPROT;
@@ -698,6 +728,89 @@ module pl_rtl_imp_QFYSB7
   wire pin_spi_miso;
   wire pin_spi_mosi;
   wire pin_spi_pclk;
+  wire [0:0]qsfp0_clk_clk_n;
+  wire [0:0]qsfp0_clk_clk_p;
+  wire [3:0]qsfp0_gt_grx_n;
+  wire [3:0]qsfp0_gt_grx_p;
+  wire [3:0]qsfp0_gt_gtx_n;
+  wire [3:0]qsfp0_gt_gtx_p;
+  wire [0:0]qsfp1_clk_clk_n;
+  wire [0:0]qsfp1_clk_clk_p;
+  wire [3:0]qsfp1_gt_grx_n;
+  wire [3:0]qsfp1_gt_grx_p;
+  wire [3:0]qsfp1_gt_gtx_n;
+  wire [3:0]qsfp1_gt_gtx_p;
+  wire [63:0]qsfp_M_AXI_ABM_0_ARADDR;
+  wire [1:0]qsfp_M_AXI_ABM_0_ARBURST;
+  wire [3:0]qsfp_M_AXI_ABM_0_ARCACHE;
+  wire [3:0]qsfp_M_AXI_ABM_0_ARID;
+  wire [7:0]qsfp_M_AXI_ABM_0_ARLEN;
+  wire qsfp_M_AXI_ABM_0_ARLOCK;
+  wire [2:0]qsfp_M_AXI_ABM_0_ARPROT;
+  wire [3:0]qsfp_M_AXI_ABM_0_ARQOS;
+  wire qsfp_M_AXI_ABM_0_ARREADY;
+  wire qsfp_M_AXI_ABM_0_ARVALID;
+  wire [63:0]qsfp_M_AXI_ABM_0_AWADDR;
+  wire [1:0]qsfp_M_AXI_ABM_0_AWBURST;
+  wire [3:0]qsfp_M_AXI_ABM_0_AWCACHE;
+  wire [3:0]qsfp_M_AXI_ABM_0_AWID;
+  wire [7:0]qsfp_M_AXI_ABM_0_AWLEN;
+  wire qsfp_M_AXI_ABM_0_AWLOCK;
+  wire [2:0]qsfp_M_AXI_ABM_0_AWPROT;
+  wire [3:0]qsfp_M_AXI_ABM_0_AWQOS;
+  wire qsfp_M_AXI_ABM_0_AWREADY;
+  wire [2:0]qsfp_M_AXI_ABM_0_AWSIZE;
+  wire qsfp_M_AXI_ABM_0_AWVALID;
+  wire qsfp_M_AXI_ABM_0_BREADY;
+  wire [1:0]qsfp_M_AXI_ABM_0_BRESP;
+  wire qsfp_M_AXI_ABM_0_BVALID;
+  wire [511:0]qsfp_M_AXI_ABM_0_RDATA;
+  wire qsfp_M_AXI_ABM_0_RLAST;
+  wire qsfp_M_AXI_ABM_0_RREADY;
+  wire [1:0]qsfp_M_AXI_ABM_0_RRESP;
+  wire qsfp_M_AXI_ABM_0_RVALID;
+  wire [511:0]qsfp_M_AXI_ABM_0_WDATA;
+  wire qsfp_M_AXI_ABM_0_WLAST;
+  wire qsfp_M_AXI_ABM_0_WREADY;
+  wire [63:0]qsfp_M_AXI_ABM_0_WSTRB;
+  wire qsfp_M_AXI_ABM_0_WVALID;
+  wire [63:0]qsfp_M_AXI_ABM_1_ARADDR;
+  wire [1:0]qsfp_M_AXI_ABM_1_ARBURST;
+  wire [3:0]qsfp_M_AXI_ABM_1_ARCACHE;
+  wire [3:0]qsfp_M_AXI_ABM_1_ARID;
+  wire [7:0]qsfp_M_AXI_ABM_1_ARLEN;
+  wire qsfp_M_AXI_ABM_1_ARLOCK;
+  wire [2:0]qsfp_M_AXI_ABM_1_ARPROT;
+  wire [3:0]qsfp_M_AXI_ABM_1_ARQOS;
+  wire qsfp_M_AXI_ABM_1_ARREADY;
+  wire qsfp_M_AXI_ABM_1_ARVALID;
+  wire [63:0]qsfp_M_AXI_ABM_1_AWADDR;
+  wire [1:0]qsfp_M_AXI_ABM_1_AWBURST;
+  wire [3:0]qsfp_M_AXI_ABM_1_AWCACHE;
+  wire [3:0]qsfp_M_AXI_ABM_1_AWID;
+  wire [7:0]qsfp_M_AXI_ABM_1_AWLEN;
+  wire qsfp_M_AXI_ABM_1_AWLOCK;
+  wire [2:0]qsfp_M_AXI_ABM_1_AWPROT;
+  wire [3:0]qsfp_M_AXI_ABM_1_AWQOS;
+  wire qsfp_M_AXI_ABM_1_AWREADY;
+  wire [2:0]qsfp_M_AXI_ABM_1_AWSIZE;
+  wire qsfp_M_AXI_ABM_1_AWVALID;
+  wire qsfp_M_AXI_ABM_1_BREADY;
+  wire [1:0]qsfp_M_AXI_ABM_1_BRESP;
+  wire qsfp_M_AXI_ABM_1_BVALID;
+  wire [511:0]qsfp_M_AXI_ABM_1_RDATA;
+  wire qsfp_M_AXI_ABM_1_RLAST;
+  wire qsfp_M_AXI_ABM_1_RREADY;
+  wire [1:0]qsfp_M_AXI_ABM_1_RRESP;
+  wire qsfp_M_AXI_ABM_1_RVALID;
+  wire [511:0]qsfp_M_AXI_ABM_1_WDATA;
+  wire qsfp_M_AXI_ABM_1_WLAST;
+  wire qsfp_M_AXI_ABM_1_WREADY;
+  wire [63:0]qsfp_M_AXI_ABM_1_WSTRB;
+  wire qsfp_M_AXI_ABM_1_WVALID;
+  wire qsfp_lpmode;
+  wire rx0_aligned;
+  wire rx1_aligned;
 
   abm_and_smem_inst_0 abm_and_smem
        (.AXI_CLOCK_CTL_araddr(AXI_CLOCK_CTL_1_ARADDR),
@@ -808,58 +921,74 @@ module pl_rtl_imp_QFYSB7
         .S_AXI_CTL_wready(S_AXI_CTL_1_WREADY),
         .S_AXI_CTL_wstrb(S_AXI_CTL_1_WSTRB),
         .S_AXI_CTL_wvalid(S_AXI_CTL_1_WVALID),
-        .S_AXI_RAM0_ETH_araddr({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM0_ETH_arburst({1'b0,1'b1}),
-        .S_AXI_RAM0_ETH_arcache({1'b0,1'b0,1'b1,1'b1}),
-        .S_AXI_RAM0_ETH_arid({1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM0_ETH_arlen({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM0_ETH_arlock(1'b0),
-        .S_AXI_RAM0_ETH_arprot({1'b0,1'b0,1'b0}),
-        .S_AXI_RAM0_ETH_arqos({1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM0_ETH_arsize({1'b1,1'b1,1'b0}),
-        .S_AXI_RAM0_ETH_arvalid(1'b0),
-        .S_AXI_RAM0_ETH_awaddr({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM0_ETH_awburst({1'b0,1'b1}),
-        .S_AXI_RAM0_ETH_awcache({1'b0,1'b0,1'b1,1'b1}),
-        .S_AXI_RAM0_ETH_awid({1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM0_ETH_awlen({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM0_ETH_awlock(1'b0),
-        .S_AXI_RAM0_ETH_awprot({1'b0,1'b0,1'b0}),
-        .S_AXI_RAM0_ETH_awqos({1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM0_ETH_awsize({1'b1,1'b1,1'b0}),
-        .S_AXI_RAM0_ETH_awvalid(1'b0),
-        .S_AXI_RAM0_ETH_bready(1'b0),
-        .S_AXI_RAM0_ETH_rready(1'b0),
-        .S_AXI_RAM0_ETH_wdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM0_ETH_wlast(1'b0),
-        .S_AXI_RAM0_ETH_wstrb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1}),
-        .S_AXI_RAM0_ETH_wvalid(1'b0),
-        .S_AXI_RAM1_ETH_araddr({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM1_ETH_arburst({1'b0,1'b1}),
-        .S_AXI_RAM1_ETH_arcache({1'b0,1'b0,1'b1,1'b1}),
-        .S_AXI_RAM1_ETH_arid({1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM1_ETH_arlen({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM1_ETH_arlock(1'b0),
-        .S_AXI_RAM1_ETH_arprot({1'b0,1'b0,1'b0}),
-        .S_AXI_RAM1_ETH_arqos({1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM1_ETH_arsize({1'b1,1'b1,1'b0}),
-        .S_AXI_RAM1_ETH_arvalid(1'b0),
-        .S_AXI_RAM1_ETH_awaddr({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM1_ETH_awburst({1'b0,1'b1}),
-        .S_AXI_RAM1_ETH_awcache({1'b0,1'b0,1'b1,1'b1}),
-        .S_AXI_RAM1_ETH_awid({1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM1_ETH_awlen({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM1_ETH_awlock(1'b0),
-        .S_AXI_RAM1_ETH_awprot({1'b0,1'b0,1'b0}),
-        .S_AXI_RAM1_ETH_awqos({1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM1_ETH_awsize({1'b1,1'b1,1'b0}),
-        .S_AXI_RAM1_ETH_awvalid(1'b0),
-        .S_AXI_RAM1_ETH_bready(1'b0),
-        .S_AXI_RAM1_ETH_rready(1'b0),
-        .S_AXI_RAM1_ETH_wdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_RAM1_ETH_wlast(1'b0),
-        .S_AXI_RAM1_ETH_wstrb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1}),
-        .S_AXI_RAM1_ETH_wvalid(1'b0),
+        .S_AXI_RAM0_ETH_araddr(qsfp_M_AXI_ABM_0_ARADDR),
+        .S_AXI_RAM0_ETH_arburst(qsfp_M_AXI_ABM_0_ARBURST),
+        .S_AXI_RAM0_ETH_arcache(qsfp_M_AXI_ABM_0_ARCACHE),
+        .S_AXI_RAM0_ETH_arid(qsfp_M_AXI_ABM_0_ARID),
+        .S_AXI_RAM0_ETH_arlen(qsfp_M_AXI_ABM_0_ARLEN),
+        .S_AXI_RAM0_ETH_arlock(qsfp_M_AXI_ABM_0_ARLOCK),
+        .S_AXI_RAM0_ETH_arprot(qsfp_M_AXI_ABM_0_ARPROT),
+        .S_AXI_RAM0_ETH_arqos(qsfp_M_AXI_ABM_0_ARQOS),
+        .S_AXI_RAM0_ETH_arready(qsfp_M_AXI_ABM_0_ARREADY),
+        .S_AXI_RAM0_ETH_arvalid(qsfp_M_AXI_ABM_0_ARVALID),
+        .S_AXI_RAM0_ETH_awaddr(qsfp_M_AXI_ABM_0_AWADDR),
+        .S_AXI_RAM0_ETH_awburst(qsfp_M_AXI_ABM_0_AWBURST),
+        .S_AXI_RAM0_ETH_awcache(qsfp_M_AXI_ABM_0_AWCACHE),
+        .S_AXI_RAM0_ETH_awid(qsfp_M_AXI_ABM_0_AWID),
+        .S_AXI_RAM0_ETH_awlen(qsfp_M_AXI_ABM_0_AWLEN),
+        .S_AXI_RAM0_ETH_awlock(qsfp_M_AXI_ABM_0_AWLOCK),
+        .S_AXI_RAM0_ETH_awprot(qsfp_M_AXI_ABM_0_AWPROT),
+        .S_AXI_RAM0_ETH_awqos(qsfp_M_AXI_ABM_0_AWQOS),
+        .S_AXI_RAM0_ETH_awready(qsfp_M_AXI_ABM_0_AWREADY),
+        .S_AXI_RAM0_ETH_awsize(qsfp_M_AXI_ABM_0_AWSIZE),
+        .S_AXI_RAM0_ETH_awvalid(qsfp_M_AXI_ABM_0_AWVALID),
+        .S_AXI_RAM0_ETH_bready(qsfp_M_AXI_ABM_0_BREADY),
+        .S_AXI_RAM0_ETH_bresp(qsfp_M_AXI_ABM_0_BRESP),
+        .S_AXI_RAM0_ETH_bvalid(qsfp_M_AXI_ABM_0_BVALID),
+        .S_AXI_RAM0_ETH_rdata(qsfp_M_AXI_ABM_0_RDATA),
+        .S_AXI_RAM0_ETH_rlast(qsfp_M_AXI_ABM_0_RLAST),
+        .S_AXI_RAM0_ETH_rready(qsfp_M_AXI_ABM_0_RREADY),
+        .S_AXI_RAM0_ETH_rresp(qsfp_M_AXI_ABM_0_RRESP),
+        .S_AXI_RAM0_ETH_rvalid(qsfp_M_AXI_ABM_0_RVALID),
+        .S_AXI_RAM0_ETH_wdata(qsfp_M_AXI_ABM_0_WDATA),
+        .S_AXI_RAM0_ETH_wlast(qsfp_M_AXI_ABM_0_WLAST),
+        .S_AXI_RAM0_ETH_wready(qsfp_M_AXI_ABM_0_WREADY),
+        .S_AXI_RAM0_ETH_wstrb(qsfp_M_AXI_ABM_0_WSTRB),
+        .S_AXI_RAM0_ETH_wvalid(qsfp_M_AXI_ABM_0_WVALID),
+        .S_AXI_RAM1_ETH_araddr(qsfp_M_AXI_ABM_1_ARADDR),
+        .S_AXI_RAM1_ETH_arburst(qsfp_M_AXI_ABM_1_ARBURST),
+        .S_AXI_RAM1_ETH_arcache(qsfp_M_AXI_ABM_1_ARCACHE),
+        .S_AXI_RAM1_ETH_arid(qsfp_M_AXI_ABM_1_ARID),
+        .S_AXI_RAM1_ETH_arlen(qsfp_M_AXI_ABM_1_ARLEN),
+        .S_AXI_RAM1_ETH_arlock(qsfp_M_AXI_ABM_1_ARLOCK),
+        .S_AXI_RAM1_ETH_arprot(qsfp_M_AXI_ABM_1_ARPROT),
+        .S_AXI_RAM1_ETH_arqos(qsfp_M_AXI_ABM_1_ARQOS),
+        .S_AXI_RAM1_ETH_arready(qsfp_M_AXI_ABM_1_ARREADY),
+        .S_AXI_RAM1_ETH_arvalid(qsfp_M_AXI_ABM_1_ARVALID),
+        .S_AXI_RAM1_ETH_awaddr(qsfp_M_AXI_ABM_1_AWADDR),
+        .S_AXI_RAM1_ETH_awburst(qsfp_M_AXI_ABM_1_AWBURST),
+        .S_AXI_RAM1_ETH_awcache(qsfp_M_AXI_ABM_1_AWCACHE),
+        .S_AXI_RAM1_ETH_awid(qsfp_M_AXI_ABM_1_AWID),
+        .S_AXI_RAM1_ETH_awlen(qsfp_M_AXI_ABM_1_AWLEN),
+        .S_AXI_RAM1_ETH_awlock(qsfp_M_AXI_ABM_1_AWLOCK),
+        .S_AXI_RAM1_ETH_awprot(qsfp_M_AXI_ABM_1_AWPROT),
+        .S_AXI_RAM1_ETH_awqos(qsfp_M_AXI_ABM_1_AWQOS),
+        .S_AXI_RAM1_ETH_awready(qsfp_M_AXI_ABM_1_AWREADY),
+        .S_AXI_RAM1_ETH_awsize(qsfp_M_AXI_ABM_1_AWSIZE),
+        .S_AXI_RAM1_ETH_awvalid(qsfp_M_AXI_ABM_1_AWVALID),
+        .S_AXI_RAM1_ETH_bready(qsfp_M_AXI_ABM_1_BREADY),
+        .S_AXI_RAM1_ETH_bresp(qsfp_M_AXI_ABM_1_BRESP),
+        .S_AXI_RAM1_ETH_bvalid(qsfp_M_AXI_ABM_1_BVALID),
+        .S_AXI_RAM1_ETH_rdata(qsfp_M_AXI_ABM_1_RDATA),
+        .S_AXI_RAM1_ETH_rlast(qsfp_M_AXI_ABM_1_RLAST),
+        .S_AXI_RAM1_ETH_rready(qsfp_M_AXI_ABM_1_RREADY),
+        .S_AXI_RAM1_ETH_rresp(qsfp_M_AXI_ABM_1_RRESP),
+        .S_AXI_RAM1_ETH_rvalid(qsfp_M_AXI_ABM_1_RVALID),
+        .S_AXI_RAM1_ETH_wdata(qsfp_M_AXI_ABM_1_WDATA),
+        .S_AXI_RAM1_ETH_wlast(qsfp_M_AXI_ABM_1_WLAST),
+        .S_AXI_RAM1_ETH_wready(qsfp_M_AXI_ABM_1_WREADY),
+        .S_AXI_RAM1_ETH_wstrb(qsfp_M_AXI_ABM_1_WSTRB),
+        .S_AXI_RAM1_ETH_wvalid(qsfp_M_AXI_ABM_1_WVALID),
         .pin_hsi_cmd(pin_hsi_cmd),
         .pin_hsi_data(pin_hsi_data),
         .pin_hsi_pclk(pin_hsi_pclk),
@@ -1128,9 +1257,502 @@ module pl_rtl_imp_QFYSB7
         .aclk(clk_250),
         .aresetn(aresetn));
   assign ilconstant_0_dout = 1'h1;
+  qsfp_imp_2DAGWY qsfp
+       (.M_AXI_ABM_0_araddr(qsfp_M_AXI_ABM_0_ARADDR),
+        .M_AXI_ABM_0_arburst(qsfp_M_AXI_ABM_0_ARBURST),
+        .M_AXI_ABM_0_arcache(qsfp_M_AXI_ABM_0_ARCACHE),
+        .M_AXI_ABM_0_arid(qsfp_M_AXI_ABM_0_ARID),
+        .M_AXI_ABM_0_arlen(qsfp_M_AXI_ABM_0_ARLEN),
+        .M_AXI_ABM_0_arlock(qsfp_M_AXI_ABM_0_ARLOCK),
+        .M_AXI_ABM_0_arprot(qsfp_M_AXI_ABM_0_ARPROT),
+        .M_AXI_ABM_0_arqos(qsfp_M_AXI_ABM_0_ARQOS),
+        .M_AXI_ABM_0_arready(qsfp_M_AXI_ABM_0_ARREADY),
+        .M_AXI_ABM_0_arvalid(qsfp_M_AXI_ABM_0_ARVALID),
+        .M_AXI_ABM_0_awaddr(qsfp_M_AXI_ABM_0_AWADDR),
+        .M_AXI_ABM_0_awburst(qsfp_M_AXI_ABM_0_AWBURST),
+        .M_AXI_ABM_0_awcache(qsfp_M_AXI_ABM_0_AWCACHE),
+        .M_AXI_ABM_0_awid(qsfp_M_AXI_ABM_0_AWID),
+        .M_AXI_ABM_0_awlen(qsfp_M_AXI_ABM_0_AWLEN),
+        .M_AXI_ABM_0_awlock(qsfp_M_AXI_ABM_0_AWLOCK),
+        .M_AXI_ABM_0_awprot(qsfp_M_AXI_ABM_0_AWPROT),
+        .M_AXI_ABM_0_awqos(qsfp_M_AXI_ABM_0_AWQOS),
+        .M_AXI_ABM_0_awready(qsfp_M_AXI_ABM_0_AWREADY),
+        .M_AXI_ABM_0_awsize(qsfp_M_AXI_ABM_0_AWSIZE),
+        .M_AXI_ABM_0_awvalid(qsfp_M_AXI_ABM_0_AWVALID),
+        .M_AXI_ABM_0_bready(qsfp_M_AXI_ABM_0_BREADY),
+        .M_AXI_ABM_0_bresp(qsfp_M_AXI_ABM_0_BRESP),
+        .M_AXI_ABM_0_bvalid(qsfp_M_AXI_ABM_0_BVALID),
+        .M_AXI_ABM_0_rdata(qsfp_M_AXI_ABM_0_RDATA),
+        .M_AXI_ABM_0_rlast(qsfp_M_AXI_ABM_0_RLAST),
+        .M_AXI_ABM_0_rready(qsfp_M_AXI_ABM_0_RREADY),
+        .M_AXI_ABM_0_rresp(qsfp_M_AXI_ABM_0_RRESP),
+        .M_AXI_ABM_0_rvalid(qsfp_M_AXI_ABM_0_RVALID),
+        .M_AXI_ABM_0_wdata(qsfp_M_AXI_ABM_0_WDATA),
+        .M_AXI_ABM_0_wlast(qsfp_M_AXI_ABM_0_WLAST),
+        .M_AXI_ABM_0_wready(qsfp_M_AXI_ABM_0_WREADY),
+        .M_AXI_ABM_0_wstrb(qsfp_M_AXI_ABM_0_WSTRB),
+        .M_AXI_ABM_0_wvalid(qsfp_M_AXI_ABM_0_WVALID),
+        .M_AXI_ABM_1_araddr(qsfp_M_AXI_ABM_1_ARADDR),
+        .M_AXI_ABM_1_arburst(qsfp_M_AXI_ABM_1_ARBURST),
+        .M_AXI_ABM_1_arcache(qsfp_M_AXI_ABM_1_ARCACHE),
+        .M_AXI_ABM_1_arid(qsfp_M_AXI_ABM_1_ARID),
+        .M_AXI_ABM_1_arlen(qsfp_M_AXI_ABM_1_ARLEN),
+        .M_AXI_ABM_1_arlock(qsfp_M_AXI_ABM_1_ARLOCK),
+        .M_AXI_ABM_1_arprot(qsfp_M_AXI_ABM_1_ARPROT),
+        .M_AXI_ABM_1_arqos(qsfp_M_AXI_ABM_1_ARQOS),
+        .M_AXI_ABM_1_arready(qsfp_M_AXI_ABM_1_ARREADY),
+        .M_AXI_ABM_1_arvalid(qsfp_M_AXI_ABM_1_ARVALID),
+        .M_AXI_ABM_1_awaddr(qsfp_M_AXI_ABM_1_AWADDR),
+        .M_AXI_ABM_1_awburst(qsfp_M_AXI_ABM_1_AWBURST),
+        .M_AXI_ABM_1_awcache(qsfp_M_AXI_ABM_1_AWCACHE),
+        .M_AXI_ABM_1_awid(qsfp_M_AXI_ABM_1_AWID),
+        .M_AXI_ABM_1_awlen(qsfp_M_AXI_ABM_1_AWLEN),
+        .M_AXI_ABM_1_awlock(qsfp_M_AXI_ABM_1_AWLOCK),
+        .M_AXI_ABM_1_awprot(qsfp_M_AXI_ABM_1_AWPROT),
+        .M_AXI_ABM_1_awqos(qsfp_M_AXI_ABM_1_AWQOS),
+        .M_AXI_ABM_1_awready(qsfp_M_AXI_ABM_1_AWREADY),
+        .M_AXI_ABM_1_awsize(qsfp_M_AXI_ABM_1_AWSIZE),
+        .M_AXI_ABM_1_awvalid(qsfp_M_AXI_ABM_1_AWVALID),
+        .M_AXI_ABM_1_bready(qsfp_M_AXI_ABM_1_BREADY),
+        .M_AXI_ABM_1_bresp(qsfp_M_AXI_ABM_1_BRESP),
+        .M_AXI_ABM_1_bvalid(qsfp_M_AXI_ABM_1_BVALID),
+        .M_AXI_ABM_1_rdata(qsfp_M_AXI_ABM_1_RDATA),
+        .M_AXI_ABM_1_rlast(qsfp_M_AXI_ABM_1_RLAST),
+        .M_AXI_ABM_1_rready(qsfp_M_AXI_ABM_1_RREADY),
+        .M_AXI_ABM_1_rresp(qsfp_M_AXI_ABM_1_RRESP),
+        .M_AXI_ABM_1_rvalid(qsfp_M_AXI_ABM_1_RVALID),
+        .M_AXI_ABM_1_wdata(qsfp_M_AXI_ABM_1_WDATA),
+        .M_AXI_ABM_1_wlast(qsfp_M_AXI_ABM_1_WLAST),
+        .M_AXI_ABM_1_wready(qsfp_M_AXI_ABM_1_WREADY),
+        .M_AXI_ABM_1_wstrb(qsfp_M_AXI_ABM_1_WSTRB),
+        .M_AXI_ABM_1_wvalid(qsfp_M_AXI_ABM_1_WVALID),
+        .aresetn(aresetn),
+        .clk_250(clk_250),
+        .qsfp0_clk_clk_n(qsfp0_clk_clk_n),
+        .qsfp0_clk_clk_p(qsfp0_clk_clk_p),
+        .qsfp0_gt_grx_n(qsfp0_gt_grx_n),
+        .qsfp0_gt_grx_p(qsfp0_gt_grx_p),
+        .qsfp0_gt_gtx_n(qsfp0_gt_gtx_n),
+        .qsfp0_gt_gtx_p(qsfp0_gt_gtx_p),
+        .qsfp1_clk_clk_n(qsfp1_clk_clk_n),
+        .qsfp1_clk_clk_p(qsfp1_clk_clk_p),
+        .qsfp1_gt_grx_n(qsfp1_gt_grx_n),
+        .qsfp1_gt_grx_p(qsfp1_gt_grx_p),
+        .qsfp1_gt_gtx_n(qsfp1_gt_gtx_n),
+        .qsfp1_gt_gtx_p(qsfp1_gt_gtx_p),
+        .qsfp_lpmode(qsfp_lpmode),
+        .rx0_aligned(rx0_aligned),
+        .rx1_aligned(rx1_aligned));
 endmodule
 
-(* CORE_GENERATION_INFO = "top_level,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=top_level,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=50,numReposBlks=40,numNonXlnxBlks=0,numHierBlks=10,maxHierDepth=4,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=19,numPkgbdBlks=1,bdsource=USER,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "top_level.hwdef" *) 
+module qsfp_imp_2DAGWY
+   (M_AXI_ABM_0_araddr,
+    M_AXI_ABM_0_arburst,
+    M_AXI_ABM_0_arcache,
+    M_AXI_ABM_0_arid,
+    M_AXI_ABM_0_arlen,
+    M_AXI_ABM_0_arlock,
+    M_AXI_ABM_0_arprot,
+    M_AXI_ABM_0_arqos,
+    M_AXI_ABM_0_arready,
+    M_AXI_ABM_0_arvalid,
+    M_AXI_ABM_0_awaddr,
+    M_AXI_ABM_0_awburst,
+    M_AXI_ABM_0_awcache,
+    M_AXI_ABM_0_awid,
+    M_AXI_ABM_0_awlen,
+    M_AXI_ABM_0_awlock,
+    M_AXI_ABM_0_awprot,
+    M_AXI_ABM_0_awqos,
+    M_AXI_ABM_0_awready,
+    M_AXI_ABM_0_awsize,
+    M_AXI_ABM_0_awvalid,
+    M_AXI_ABM_0_bready,
+    M_AXI_ABM_0_bresp,
+    M_AXI_ABM_0_bvalid,
+    M_AXI_ABM_0_rdata,
+    M_AXI_ABM_0_rlast,
+    M_AXI_ABM_0_rready,
+    M_AXI_ABM_0_rresp,
+    M_AXI_ABM_0_rvalid,
+    M_AXI_ABM_0_wdata,
+    M_AXI_ABM_0_wlast,
+    M_AXI_ABM_0_wready,
+    M_AXI_ABM_0_wstrb,
+    M_AXI_ABM_0_wvalid,
+    M_AXI_ABM_1_araddr,
+    M_AXI_ABM_1_arburst,
+    M_AXI_ABM_1_arcache,
+    M_AXI_ABM_1_arid,
+    M_AXI_ABM_1_arlen,
+    M_AXI_ABM_1_arlock,
+    M_AXI_ABM_1_arprot,
+    M_AXI_ABM_1_arqos,
+    M_AXI_ABM_1_arready,
+    M_AXI_ABM_1_arvalid,
+    M_AXI_ABM_1_awaddr,
+    M_AXI_ABM_1_awburst,
+    M_AXI_ABM_1_awcache,
+    M_AXI_ABM_1_awid,
+    M_AXI_ABM_1_awlen,
+    M_AXI_ABM_1_awlock,
+    M_AXI_ABM_1_awprot,
+    M_AXI_ABM_1_awqos,
+    M_AXI_ABM_1_awready,
+    M_AXI_ABM_1_awsize,
+    M_AXI_ABM_1_awvalid,
+    M_AXI_ABM_1_bready,
+    M_AXI_ABM_1_bresp,
+    M_AXI_ABM_1_bvalid,
+    M_AXI_ABM_1_rdata,
+    M_AXI_ABM_1_rlast,
+    M_AXI_ABM_1_rready,
+    M_AXI_ABM_1_rresp,
+    M_AXI_ABM_1_rvalid,
+    M_AXI_ABM_1_wdata,
+    M_AXI_ABM_1_wlast,
+    M_AXI_ABM_1_wready,
+    M_AXI_ABM_1_wstrb,
+    M_AXI_ABM_1_wvalid,
+    aresetn,
+    clk_250,
+    qsfp0_clk_clk_n,
+    qsfp0_clk_clk_p,
+    qsfp0_gt_grx_n,
+    qsfp0_gt_grx_p,
+    qsfp0_gt_gtx_n,
+    qsfp0_gt_gtx_p,
+    qsfp1_clk_clk_n,
+    qsfp1_clk_clk_p,
+    qsfp1_gt_grx_n,
+    qsfp1_gt_grx_p,
+    qsfp1_gt_gtx_n,
+    qsfp1_gt_gtx_p,
+    qsfp_lpmode,
+    rx0_aligned,
+    rx1_aligned);
+  output [63:0]M_AXI_ABM_0_araddr;
+  output [1:0]M_AXI_ABM_0_arburst;
+  output [3:0]M_AXI_ABM_0_arcache;
+  output [3:0]M_AXI_ABM_0_arid;
+  output [7:0]M_AXI_ABM_0_arlen;
+  output M_AXI_ABM_0_arlock;
+  output [2:0]M_AXI_ABM_0_arprot;
+  output [3:0]M_AXI_ABM_0_arqos;
+  input M_AXI_ABM_0_arready;
+  output M_AXI_ABM_0_arvalid;
+  output [63:0]M_AXI_ABM_0_awaddr;
+  output [1:0]M_AXI_ABM_0_awburst;
+  output [3:0]M_AXI_ABM_0_awcache;
+  output [3:0]M_AXI_ABM_0_awid;
+  output [7:0]M_AXI_ABM_0_awlen;
+  output M_AXI_ABM_0_awlock;
+  output [2:0]M_AXI_ABM_0_awprot;
+  output [3:0]M_AXI_ABM_0_awqos;
+  input M_AXI_ABM_0_awready;
+  output [2:0]M_AXI_ABM_0_awsize;
+  output M_AXI_ABM_0_awvalid;
+  output M_AXI_ABM_0_bready;
+  input [1:0]M_AXI_ABM_0_bresp;
+  input M_AXI_ABM_0_bvalid;
+  input [511:0]M_AXI_ABM_0_rdata;
+  input M_AXI_ABM_0_rlast;
+  output M_AXI_ABM_0_rready;
+  input [1:0]M_AXI_ABM_0_rresp;
+  input M_AXI_ABM_0_rvalid;
+  output [511:0]M_AXI_ABM_0_wdata;
+  output M_AXI_ABM_0_wlast;
+  input M_AXI_ABM_0_wready;
+  output [63:0]M_AXI_ABM_0_wstrb;
+  output M_AXI_ABM_0_wvalid;
+  output [63:0]M_AXI_ABM_1_araddr;
+  output [1:0]M_AXI_ABM_1_arburst;
+  output [3:0]M_AXI_ABM_1_arcache;
+  output [3:0]M_AXI_ABM_1_arid;
+  output [7:0]M_AXI_ABM_1_arlen;
+  output M_AXI_ABM_1_arlock;
+  output [2:0]M_AXI_ABM_1_arprot;
+  output [3:0]M_AXI_ABM_1_arqos;
+  input M_AXI_ABM_1_arready;
+  output M_AXI_ABM_1_arvalid;
+  output [63:0]M_AXI_ABM_1_awaddr;
+  output [1:0]M_AXI_ABM_1_awburst;
+  output [3:0]M_AXI_ABM_1_awcache;
+  output [3:0]M_AXI_ABM_1_awid;
+  output [7:0]M_AXI_ABM_1_awlen;
+  output M_AXI_ABM_1_awlock;
+  output [2:0]M_AXI_ABM_1_awprot;
+  output [3:0]M_AXI_ABM_1_awqos;
+  input M_AXI_ABM_1_awready;
+  output [2:0]M_AXI_ABM_1_awsize;
+  output M_AXI_ABM_1_awvalid;
+  output M_AXI_ABM_1_bready;
+  input [1:0]M_AXI_ABM_1_bresp;
+  input M_AXI_ABM_1_bvalid;
+  input [511:0]M_AXI_ABM_1_rdata;
+  input M_AXI_ABM_1_rlast;
+  output M_AXI_ABM_1_rready;
+  input [1:0]M_AXI_ABM_1_rresp;
+  input M_AXI_ABM_1_rvalid;
+  output [511:0]M_AXI_ABM_1_wdata;
+  output M_AXI_ABM_1_wlast;
+  input M_AXI_ABM_1_wready;
+  output [63:0]M_AXI_ABM_1_wstrb;
+  output M_AXI_ABM_1_wvalid;
+  input aresetn;
+  input clk_250;
+  input [0:0]qsfp0_clk_clk_n;
+  input [0:0]qsfp0_clk_clk_p;
+  input [3:0]qsfp0_gt_grx_n;
+  input [3:0]qsfp0_gt_grx_p;
+  output [3:0]qsfp0_gt_gtx_n;
+  output [3:0]qsfp0_gt_gtx_p;
+  input [0:0]qsfp1_clk_clk_n;
+  input [0:0]qsfp1_clk_clk_p;
+  input [3:0]qsfp1_gt_grx_n;
+  input [3:0]qsfp1_gt_grx_p;
+  output [3:0]qsfp1_gt_gtx_n;
+  output [3:0]qsfp1_gt_gtx_p;
+  output qsfp_lpmode;
+  output rx0_aligned;
+  output rx1_aligned;
+
+  wire [63:0]M_AXI_ABM_0_araddr;
+  wire [1:0]M_AXI_ABM_0_arburst;
+  wire [3:0]M_AXI_ABM_0_arcache;
+  wire [3:0]M_AXI_ABM_0_arid;
+  wire [7:0]M_AXI_ABM_0_arlen;
+  wire M_AXI_ABM_0_arlock;
+  wire [2:0]M_AXI_ABM_0_arprot;
+  wire [3:0]M_AXI_ABM_0_arqos;
+  wire M_AXI_ABM_0_arready;
+  wire M_AXI_ABM_0_arvalid;
+  wire [63:0]M_AXI_ABM_0_awaddr;
+  wire [1:0]M_AXI_ABM_0_awburst;
+  wire [3:0]M_AXI_ABM_0_awcache;
+  wire [3:0]M_AXI_ABM_0_awid;
+  wire [7:0]M_AXI_ABM_0_awlen;
+  wire M_AXI_ABM_0_awlock;
+  wire [2:0]M_AXI_ABM_0_awprot;
+  wire [3:0]M_AXI_ABM_0_awqos;
+  wire M_AXI_ABM_0_awready;
+  wire [2:0]M_AXI_ABM_0_awsize;
+  wire M_AXI_ABM_0_awvalid;
+  wire M_AXI_ABM_0_bready;
+  wire [1:0]M_AXI_ABM_0_bresp;
+  wire M_AXI_ABM_0_bvalid;
+  wire [511:0]M_AXI_ABM_0_rdata;
+  wire M_AXI_ABM_0_rlast;
+  wire M_AXI_ABM_0_rready;
+  wire [1:0]M_AXI_ABM_0_rresp;
+  wire M_AXI_ABM_0_rvalid;
+  wire [511:0]M_AXI_ABM_0_wdata;
+  wire M_AXI_ABM_0_wlast;
+  wire M_AXI_ABM_0_wready;
+  wire [63:0]M_AXI_ABM_0_wstrb;
+  wire M_AXI_ABM_0_wvalid;
+  wire [63:0]M_AXI_ABM_1_araddr;
+  wire [1:0]M_AXI_ABM_1_arburst;
+  wire [3:0]M_AXI_ABM_1_arcache;
+  wire [3:0]M_AXI_ABM_1_arid;
+  wire [7:0]M_AXI_ABM_1_arlen;
+  wire M_AXI_ABM_1_arlock;
+  wire [2:0]M_AXI_ABM_1_arprot;
+  wire [3:0]M_AXI_ABM_1_arqos;
+  wire M_AXI_ABM_1_arready;
+  wire M_AXI_ABM_1_arvalid;
+  wire [63:0]M_AXI_ABM_1_awaddr;
+  wire [1:0]M_AXI_ABM_1_awburst;
+  wire [3:0]M_AXI_ABM_1_awcache;
+  wire [3:0]M_AXI_ABM_1_awid;
+  wire [7:0]M_AXI_ABM_1_awlen;
+  wire M_AXI_ABM_1_awlock;
+  wire [2:0]M_AXI_ABM_1_awprot;
+  wire [3:0]M_AXI_ABM_1_awqos;
+  wire M_AXI_ABM_1_awready;
+  wire [2:0]M_AXI_ABM_1_awsize;
+  wire M_AXI_ABM_1_awvalid;
+  wire M_AXI_ABM_1_bready;
+  wire [1:0]M_AXI_ABM_1_bresp;
+  wire M_AXI_ABM_1_bvalid;
+  wire [511:0]M_AXI_ABM_1_rdata;
+  wire M_AXI_ABM_1_rlast;
+  wire M_AXI_ABM_1_rready;
+  wire [1:0]M_AXI_ABM_1_rresp;
+  wire M_AXI_ABM_1_rvalid;
+  wire [511:0]M_AXI_ABM_1_wdata;
+  wire M_AXI_ABM_1_wlast;
+  wire M_AXI_ABM_1_wready;
+  wire [63:0]M_AXI_ABM_1_wstrb;
+  wire M_AXI_ABM_1_wvalid;
+  wire aresetn;
+  wire clk_250;
+  wire [0:0]qsfp0_clk_clk_n;
+  wire [0:0]qsfp0_clk_clk_p;
+  wire [3:0]qsfp0_gt_grx_n;
+  wire [3:0]qsfp0_gt_grx_p;
+  wire [3:0]qsfp0_gt_gtx_n;
+  wire [3:0]qsfp0_gt_gtx_p;
+  wire [0:0]qsfp1_clk_clk_n;
+  wire [0:0]qsfp1_clk_clk_p;
+  wire [3:0]qsfp1_gt_grx_n;
+  wire [3:0]qsfp1_gt_grx_p;
+  wire [3:0]qsfp1_gt_gtx_n;
+  wire [3:0]qsfp1_gt_gtx_p;
+  wire qsfp_lpmode;
+  wire rx0_aligned;
+  wire rx1_aligned;
+  wire [511:0]vpk120_eth2x100_0_rx0_user_TDATA;
+  wire [63:0]vpk120_eth2x100_0_rx0_user_TKEEP;
+  wire vpk120_eth2x100_0_rx0_user_TLAST;
+  wire vpk120_eth2x100_0_rx0_user_TREADY;
+  wire vpk120_eth2x100_0_rx0_user_TVALID;
+  wire [511:0]vpk120_eth2x100_0_rx1_user_TDATA;
+  wire [63:0]vpk120_eth2x100_0_rx1_user_TKEEP;
+  wire vpk120_eth2x100_0_rx1_user_TLAST;
+  wire vpk120_eth2x100_0_rx1_user_TREADY;
+  wire vpk120_eth2x100_0_rx1_user_TVALID;
+
+  top_level_rdmx_recv_0_0 rdmx_recv_0
+       (.AXIS_RDMX_TDATA(vpk120_eth2x100_0_rx0_user_TDATA),
+        .AXIS_RDMX_TKEEP(vpk120_eth2x100_0_rx0_user_TKEEP),
+        .AXIS_RDMX_TLAST(vpk120_eth2x100_0_rx0_user_TLAST),
+        .AXIS_RDMX_TREADY(vpk120_eth2x100_0_rx0_user_TREADY),
+        .AXIS_RDMX_TVALID(vpk120_eth2x100_0_rx0_user_TVALID),
+        .M_AXI_ARADDR(M_AXI_ABM_0_araddr),
+        .M_AXI_ARBURST(M_AXI_ABM_0_arburst),
+        .M_AXI_ARCACHE(M_AXI_ABM_0_arcache),
+        .M_AXI_ARID(M_AXI_ABM_0_arid),
+        .M_AXI_ARLEN(M_AXI_ABM_0_arlen),
+        .M_AXI_ARLOCK(M_AXI_ABM_0_arlock),
+        .M_AXI_ARPROT(M_AXI_ABM_0_arprot),
+        .M_AXI_ARQOS(M_AXI_ABM_0_arqos),
+        .M_AXI_ARREADY(M_AXI_ABM_0_arready),
+        .M_AXI_ARVALID(M_AXI_ABM_0_arvalid),
+        .M_AXI_AWADDR(M_AXI_ABM_0_awaddr),
+        .M_AXI_AWBURST(M_AXI_ABM_0_awburst),
+        .M_AXI_AWCACHE(M_AXI_ABM_0_awcache),
+        .M_AXI_AWID(M_AXI_ABM_0_awid),
+        .M_AXI_AWLEN(M_AXI_ABM_0_awlen),
+        .M_AXI_AWLOCK(M_AXI_ABM_0_awlock),
+        .M_AXI_AWPROT(M_AXI_ABM_0_awprot),
+        .M_AXI_AWQOS(M_AXI_ABM_0_awqos),
+        .M_AXI_AWREADY(M_AXI_ABM_0_awready),
+        .M_AXI_AWSIZE(M_AXI_ABM_0_awsize),
+        .M_AXI_AWVALID(M_AXI_ABM_0_awvalid),
+        .M_AXI_BREADY(M_AXI_ABM_0_bready),
+        .M_AXI_BRESP(M_AXI_ABM_0_bresp),
+        .M_AXI_BVALID(M_AXI_ABM_0_bvalid),
+        .M_AXI_RDATA(M_AXI_ABM_0_rdata),
+        .M_AXI_RLAST(M_AXI_ABM_0_rlast),
+        .M_AXI_RREADY(M_AXI_ABM_0_rready),
+        .M_AXI_RRESP(M_AXI_ABM_0_rresp),
+        .M_AXI_RVALID(M_AXI_ABM_0_rvalid),
+        .M_AXI_WDATA(M_AXI_ABM_0_wdata),
+        .M_AXI_WLAST(M_AXI_ABM_0_wlast),
+        .M_AXI_WREADY(M_AXI_ABM_0_wready),
+        .M_AXI_WSTRB(M_AXI_ABM_0_wstrb),
+        .M_AXI_WVALID(M_AXI_ABM_0_wvalid),
+        .clk(clk_250),
+        .resetn(aresetn));
+  top_level_rdmx_recv_0_1 rdmx_recv_1
+       (.AXIS_RDMX_TDATA(vpk120_eth2x100_0_rx1_user_TDATA),
+        .AXIS_RDMX_TKEEP(vpk120_eth2x100_0_rx1_user_TKEEP),
+        .AXIS_RDMX_TLAST(vpk120_eth2x100_0_rx1_user_TLAST),
+        .AXIS_RDMX_TREADY(vpk120_eth2x100_0_rx1_user_TREADY),
+        .AXIS_RDMX_TVALID(vpk120_eth2x100_0_rx1_user_TVALID),
+        .M_AXI_ARADDR(M_AXI_ABM_1_araddr),
+        .M_AXI_ARBURST(M_AXI_ABM_1_arburst),
+        .M_AXI_ARCACHE(M_AXI_ABM_1_arcache),
+        .M_AXI_ARID(M_AXI_ABM_1_arid),
+        .M_AXI_ARLEN(M_AXI_ABM_1_arlen),
+        .M_AXI_ARLOCK(M_AXI_ABM_1_arlock),
+        .M_AXI_ARPROT(M_AXI_ABM_1_arprot),
+        .M_AXI_ARQOS(M_AXI_ABM_1_arqos),
+        .M_AXI_ARREADY(M_AXI_ABM_1_arready),
+        .M_AXI_ARVALID(M_AXI_ABM_1_arvalid),
+        .M_AXI_AWADDR(M_AXI_ABM_1_awaddr),
+        .M_AXI_AWBURST(M_AXI_ABM_1_awburst),
+        .M_AXI_AWCACHE(M_AXI_ABM_1_awcache),
+        .M_AXI_AWID(M_AXI_ABM_1_awid),
+        .M_AXI_AWLEN(M_AXI_ABM_1_awlen),
+        .M_AXI_AWLOCK(M_AXI_ABM_1_awlock),
+        .M_AXI_AWPROT(M_AXI_ABM_1_awprot),
+        .M_AXI_AWQOS(M_AXI_ABM_1_awqos),
+        .M_AXI_AWREADY(M_AXI_ABM_1_awready),
+        .M_AXI_AWSIZE(M_AXI_ABM_1_awsize),
+        .M_AXI_AWVALID(M_AXI_ABM_1_awvalid),
+        .M_AXI_BREADY(M_AXI_ABM_1_bready),
+        .M_AXI_BRESP(M_AXI_ABM_1_bresp),
+        .M_AXI_BVALID(M_AXI_ABM_1_bvalid),
+        .M_AXI_RDATA(M_AXI_ABM_1_rdata),
+        .M_AXI_RLAST(M_AXI_ABM_1_rlast),
+        .M_AXI_RREADY(M_AXI_ABM_1_rready),
+        .M_AXI_RRESP(M_AXI_ABM_1_rresp),
+        .M_AXI_RVALID(M_AXI_ABM_1_rvalid),
+        .M_AXI_WDATA(M_AXI_ABM_1_wdata),
+        .M_AXI_WLAST(M_AXI_ABM_1_wlast),
+        .M_AXI_WREADY(M_AXI_ABM_1_wready),
+        .M_AXI_WSTRB(M_AXI_ABM_1_wstrb),
+        .M_AXI_WVALID(M_AXI_ABM_1_wvalid),
+        .clk(clk_250),
+        .resetn(aresetn));
+  vpk120_eth2x100_inst_0 vpk120_eth2x100
+       (.qsfp0_clk_clk_n(qsfp0_clk_clk_n),
+        .qsfp0_clk_clk_p(qsfp0_clk_clk_p),
+        .qsfp0_gt_grx_n(qsfp0_gt_grx_n),
+        .qsfp0_gt_grx_p(qsfp0_gt_grx_p),
+        .qsfp0_gt_gtx_n(qsfp0_gt_gtx_n),
+        .qsfp0_gt_gtx_p(qsfp0_gt_gtx_p),
+        .qsfp1_clk_clk_n(qsfp1_clk_clk_n),
+        .qsfp1_clk_clk_p(qsfp1_clk_clk_p),
+        .qsfp1_gt_grx_n(qsfp1_gt_grx_n),
+        .qsfp1_gt_grx_p(qsfp1_gt_grx_p),
+        .qsfp1_gt_gtx_n(qsfp1_gt_gtx_n),
+        .qsfp1_gt_gtx_p(qsfp1_gt_gtx_p),
+        .qsfp_lpmode(qsfp_lpmode),
+        .rx0_aligned(rx0_aligned),
+        .rx0_user_clk(clk_250),
+        .rx0_user_tdata(vpk120_eth2x100_0_rx0_user_TDATA),
+        .rx0_user_tkeep(vpk120_eth2x100_0_rx0_user_TKEEP),
+        .rx0_user_tlast(vpk120_eth2x100_0_rx0_user_TLAST),
+        .rx0_user_tready(vpk120_eth2x100_0_rx0_user_TREADY),
+        .rx0_user_tvalid(vpk120_eth2x100_0_rx0_user_TVALID),
+        .rx1_aligned(rx1_aligned),
+        .rx1_user_clk(clk_250),
+        .rx1_user_tdata(vpk120_eth2x100_0_rx1_user_TDATA),
+        .rx1_user_tkeep(vpk120_eth2x100_0_rx1_user_TKEEP),
+        .rx1_user_tlast(vpk120_eth2x100_0_rx1_user_TLAST),
+        .rx1_user_tready(vpk120_eth2x100_0_rx1_user_TREADY),
+        .rx1_user_tvalid(vpk120_eth2x100_0_rx1_user_TVALID),
+        .s_axi_aresetn(aresetn),
+        .s_axi_clk(clk_250),
+        .s_axi_ctl_araddr({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .s_axi_ctl_arprot({1'b0,1'b0,1'b0}),
+        .s_axi_ctl_arvalid(1'b0),
+        .s_axi_ctl_awaddr({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .s_axi_ctl_awprot({1'b0,1'b0,1'b0}),
+        .s_axi_ctl_awvalid(1'b0),
+        .s_axi_ctl_bready(1'b0),
+        .s_axi_ctl_rready(1'b0),
+        .s_axi_ctl_wdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .s_axi_ctl_wstrb({1'b0,1'b0,1'b0,1'b1}),
+        .s_axi_ctl_wvalid(1'b0),
+        .tx0_user_clk(clk_250),
+        .tx0_user_resetn(aresetn),
+        .tx0_user_tdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .tx0_user_tkeep({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1}),
+        .tx0_user_tlast(1'b0),
+        .tx0_user_tvalid(1'b0),
+        .tx1_user_clk(clk_250),
+        .tx1_user_resetn(aresetn),
+        .tx1_user_tdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .tx1_user_tkeep({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1}),
+        .tx1_user_tlast(1'b0),
+        .tx1_user_tvalid(1'b0));
+endmodule
+
+(* CORE_GENERATION_INFO = "top_level,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=top_level,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=95,numReposBlks=78,numNonXlnxBlks=0,numHierBlks=17,maxHierDepth=4,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=38,numPkgbdBlks=2,bdsource=USER,synth_mode=Hierarchical}" *) (* HW_HANDOFF = "top_level.hwdef" *) 
 module top_level
    (CHIP_GPIO13,
     CHIP_GPIO15,
@@ -1273,7 +1895,22 @@ module top_level
     lpddr4_clk2_clk_n,
     lpddr4_clk2_clk_p,
     lpddr4_clk3_clk_n,
-    lpddr4_clk3_clk_p);
+    lpddr4_clk3_clk_p,
+    qsfp0_clk_clk_n,
+    qsfp0_clk_clk_p,
+    qsfp0_gt_grx_n,
+    qsfp0_gt_grx_p,
+    qsfp0_gt_gtx_n,
+    qsfp0_gt_gtx_p,
+    qsfp1_clk_clk_n,
+    qsfp1_clk_clk_p,
+    qsfp1_gt_grx_n,
+    qsfp1_gt_grx_p,
+    qsfp1_gt_gtx_n,
+    qsfp1_gt_gtx_p,
+    qsfp_lpmode,
+    rx0_aligned,
+    rx1_aligned);
   output [0:0]CHIP_GPIO13;
   output [0:0]CHIP_GPIO15;
   output [0:0]CHIP_GPIO15_DIR;
@@ -1416,6 +2053,21 @@ module top_level
   (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 lpddr4_clk2 CLK_P" *) input lpddr4_clk2_clk_p;
   (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 lpddr4_clk3 CLK_N" *) (* X_INTERFACE_MODE = "Slave" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME lpddr4_clk3, CAN_DEBUG false, FREQ_HZ 200321000" *) input lpddr4_clk3_clk_n;
   (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 lpddr4_clk3 CLK_P" *) input lpddr4_clk3_clk_p;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 qsfp0_clk CLK_N" *) (* X_INTERFACE_MODE = "Slave" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME qsfp0_clk, CAN_DEBUG false, FREQ_HZ 156250000" *) input [0:0]qsfp0_clk_clk_n;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 qsfp0_clk CLK_P" *) input [0:0]qsfp0_clk_clk_p;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gt:1.0 qsfp0_gt GRX_N" *) (* X_INTERFACE_MODE = "Master" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME qsfp0_gt, CAN_DEBUG false" *) input [3:0]qsfp0_gt_grx_n;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gt:1.0 qsfp0_gt GRX_P" *) input [3:0]qsfp0_gt_grx_p;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gt:1.0 qsfp0_gt GTX_N" *) output [3:0]qsfp0_gt_gtx_n;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gt:1.0 qsfp0_gt GTX_P" *) output [3:0]qsfp0_gt_gtx_p;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 qsfp1_clk CLK_N" *) (* X_INTERFACE_MODE = "Slave" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME qsfp1_clk, CAN_DEBUG false, FREQ_HZ 156250000" *) input [0:0]qsfp1_clk_clk_n;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 qsfp1_clk CLK_P" *) input [0:0]qsfp1_clk_clk_p;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gt:1.0 qsfp1_gt GRX_N" *) (* X_INTERFACE_MODE = "Master" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME qsfp1_gt, CAN_DEBUG false" *) input [3:0]qsfp1_gt_grx_n;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gt:1.0 qsfp1_gt GRX_P" *) input [3:0]qsfp1_gt_grx_p;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gt:1.0 qsfp1_gt GTX_N" *) output [3:0]qsfp1_gt_gtx_n;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gt:1.0 qsfp1_gt GTX_P" *) output [3:0]qsfp1_gt_gtx_p;
+  output qsfp_lpmode;
+  output rx0_aligned;
+  output rx1_aligned;
 
   wire [0:0]CHIP_GPIO13;
   wire [0:0]CHIP_GPIO15;
@@ -2011,6 +2663,21 @@ module top_level
   wire [0:0]pl_rtl_M_AXI_SYSRAM_WVALID;
   wire pl_rtl_irq;
   wire [0:0]proc_sys_reset_0_peripheral_aresetn;
+  wire [0:0]qsfp0_clk_clk_n;
+  wire [0:0]qsfp0_clk_clk_p;
+  wire [3:0]qsfp0_gt_grx_n;
+  wire [3:0]qsfp0_gt_grx_p;
+  wire [3:0]qsfp0_gt_gtx_n;
+  wire [3:0]qsfp0_gt_gtx_p;
+  wire [0:0]qsfp1_clk_clk_n;
+  wire [0:0]qsfp1_clk_clk_p;
+  wire [3:0]qsfp1_gt_grx_n;
+  wire [3:0]qsfp1_gt_grx_p;
+  wire [3:0]qsfp1_gt_gtx_n;
+  wire [3:0]qsfp1_gt_gtx_p;
+  wire qsfp_lpmode;
+  wire rx0_aligned;
+  wire rx1_aligned;
 
   assign ch0_lpddr4_trip1_ck_c_a = \^ch0_lpddr4_trip1_ck_c_a [0];
   assign ch0_lpddr4_trip1_ck_c_b = \^ch0_lpddr4_trip1_ck_c_b [0];
@@ -3139,7 +3806,22 @@ module top_level
         .pin_spi_cs_n(CHIP_SPI_CSN),
         .pin_spi_miso(CHIP_SPI_MISO),
         .pin_spi_mosi(CHIP_SPI_MOSI),
-        .pin_spi_pclk(CHIP_SPI_SCK));
+        .pin_spi_pclk(CHIP_SPI_SCK),
+        .qsfp0_clk_clk_n(qsfp0_clk_clk_n),
+        .qsfp0_clk_clk_p(qsfp0_clk_clk_p),
+        .qsfp0_gt_grx_n(qsfp0_gt_grx_n),
+        .qsfp0_gt_grx_p(qsfp0_gt_grx_p),
+        .qsfp0_gt_gtx_n(qsfp0_gt_gtx_n),
+        .qsfp0_gt_gtx_p(qsfp0_gt_gtx_p),
+        .qsfp1_clk_clk_n(qsfp1_clk_clk_n),
+        .qsfp1_clk_clk_p(qsfp1_clk_clk_p),
+        .qsfp1_gt_grx_n(qsfp1_gt_grx_n),
+        .qsfp1_gt_grx_p(qsfp1_gt_grx_p),
+        .qsfp1_gt_gtx_n(qsfp1_gt_gtx_n),
+        .qsfp1_gt_gtx_p(qsfp1_gt_gtx_p),
+        .qsfp_lpmode(qsfp_lpmode),
+        .rx0_aligned(rx0_aligned),
+        .rx1_aligned(rx1_aligned));
   top_level_proc_sys_reset_0_0 proc_sys_reset
        (.aux_reset_in(1'b1),
         .dcm_locked(clk_wizard_0_locked),

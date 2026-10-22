@@ -31,18 +31,18 @@ preplace netloc abm_loader_0_idle 1 0 1 20 380n
 preplace netloc abm_loader_0_slave_select 1 1 1 N 520
 preplace netloc abm_loader_1_idle 1 0 1 N 160
 preplace netloc abm_loader_1_slave_select 1 1 1 N 80
-preplace netloc abm_manager_if_0_ram_addr 1 2 1 840 140n
+preplace netloc abm_manager_if_0_ram_addr 1 2 1 830 140n
 preplace netloc abm_notifier_abm_ready 1 2 2 NJ 240 N
-preplace netloc clk_1 1 0 3 120 240 480 380 N
+preplace netloc clk_1 1 0 3 120 240 490 380 N
 preplace netloc load_0_1 1 0 1 40J 350n
 preplace netloc load_1_1 1 0 1 NJ 140
 preplace netloc load_wstrobe_1 1 0 1 80 180n
-preplace netloc muxed_sdp_ram_if_0_dob 1 2 1 860 400n
-preplace netloc muxed_sdp_ram_if_0_last_word_written 1 1 1 500 300n
-preplace netloc muxed_sdp_ram_if_1_dob 1 2 1 860 120n
-preplace netloc muxed_sdp_ram_if_1_last_word_written 1 1 1 500 140n
+preplace netloc muxed_sdp_ram_if_0_dob 1 2 1 850 400n
+preplace netloc muxed_sdp_ram_if_0_last_word_written 1 1 1 510 300n
+preplace netloc muxed_sdp_ram_if_1_dob 1 2 1 850 120n
+preplace netloc muxed_sdp_ram_if_1_last_word_written 1 1 1 510 140n
 preplace netloc pci_src_addr_1 1 0 1 100 120n
-preplace netloc resetn_1 1 0 3 140 260 460 360 N
+preplace netloc resetn_1 1 0 3 140 260 470 360 N
 preplace netloc S_AXI_ABM_1 1 3 1 N 300
 preplace netloc S_AXI_RAM0_ETH_1 1 2 2 N 460 NJ
 preplace netloc S_AXI_RAM1_ETH_1 1 2 2 N 100 NJ
